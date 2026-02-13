@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abremeee</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            text-align: center;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .option {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+        }
+        #yes {
+            background-color: lightgreen;
+        }
+        #no {
+            background-color: lightcoral;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            display: none;
+        }
+        img {
+            margin-top: 20px;
+            border-radius: 15px;
+        }
+        .emoji {
+            font-size: 80px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="title">
+        Holaa, ¿quieres pasar este San Valentín conmigo?  
+        Tranqui, eres libre de decir que no 🩷
+    </div>
+
+    <div class="container">
+        <div class="option" id="yes">Sí</div>
+        <div class="option" id="no">No</div>
+    </div>
+
+    <!-- Imagen antes -->
+    <img id="beforeImage" src="stickerpato.png" width="250">
+
+    <!-- Imagen después -->
+    <img id="afterImage" src="stickercerdo.png" width="250" style="display:none;">
+
+    <div class="message" id="message">¡Gracias por decir que sí 🩷! </div>
+
+    <div class="emoji">🐷</div>
+
+    <script>
+        let yesButton = document.getElementById('yes');
+        let noButton = document.getElementById('no');
+        let message = document.getElementById('message');
+        let beforeImage = document.getElementById('beforeImage');
+        let afterImage = document.getElementById('afterImage');
+
+        let size = 100;
+        let noClickCount = 0;
+        let noMessages = [
+            "¿Segura? 🤨",
+            "¿Segura segura? 🤔",
+            "¿Pero segura segura? 🧐",
+            "Esta es la última vez que te preguntaré... ¿segura? 😏",
+            "Bueno, tengo todo el día 😌",
+            "¿Segura? 🙄"
+        ];
+
+        yesButton.addEventListener('click', () => {
+            message.style.display = 'block';
+            beforeImage.style.display = 'none';
+            afterImage.style.display = 'block';
+        });
+
+        noButton.addEventListener('click', () => {
+            size += 20;
+            yesButton.style.width = `${size}px`;
+            yesButton.style.height = `${size}px`;
+            yesButton.style.fontSize = `${size / 5}px`;
+            
+            if (noClickCount < noMessages.length) {
+                noButton.innerText = noMessages[noClickCount];
+                noClickCount++;
+            }
+        });
+    </script>
+
+</body>
+</html>
